@@ -1,0 +1,6 @@
+name: MoneyDrops
+main: net.crytec.pickmoney.PickupMoney
+version: 1.1.1
+authors: [crysis992]
+depend: [CT-Core, Vault]
+api-version: 1.13
