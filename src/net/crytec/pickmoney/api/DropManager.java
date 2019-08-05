@@ -22,9 +22,9 @@ import com.google.common.collect.TreeRangeMap;
 
 import io.netty.util.internal.ThreadLocalRandom;
 import lombok.Getter;
-import net.crytec.api.itemstack.ItemBuilder;
-import net.crytec.api.nbt.NBTItem;
-import net.crytec.api.util.UtilMath;
+import net.crytec.phoenix.api.item.ItemBuilder;
+import net.crytec.phoenix.api.nbt.NBTItem;
+import net.crytec.phoenix.api.utils.UtilMath;
 import net.crytec.pickmoney.ConfigOptions;
 import net.crytec.pickmoney.PickupMoney;
 import net.crytec.shaded.org.apache.lang3.EnumUtils;

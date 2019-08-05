@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import lombok.Getter;
 import net.crytec.acf.PaperCommandManager;
+import net.crytec.phoenix.api.Phoenix;
 import net.crytec.pickmoney.Metrics.SingleLineChart;
 import net.crytec.pickmoney.api.DropManager;
 import net.crytec.pickmoney.commands.PickupMoneyCommand;
@@ -38,6 +39,11 @@ public class PickupMoney extends JavaPlugin {
 	public void onEnable() {
 		
 		getDataFolder().mkdirs();
+		
+		if (!Phoenix.getAPI().requireAPIVersion(this, 500)) {
+			Bukkit.getPluginManager().disablePlugin(this);
+			return;
+		}
 		
 		File file = new File(this.getDataFolder(), "config.yml");
 		if (!file.exists()) {

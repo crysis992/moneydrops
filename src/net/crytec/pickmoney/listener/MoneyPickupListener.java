@@ -10,9 +10,9 @@ import org.bukkit.event.entity.ItemMergeEvent;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
 import org.bukkit.event.inventory.InventoryType;
 
-import net.crytec.api.nbt.NBTItem;
-import net.crytec.api.util.UtilMath;
-import net.crytec.api.util.UtilPlayer;
+import net.crytec.phoenix.api.nbt.NBTItem;
+import net.crytec.phoenix.api.utils.UtilMath;
+import net.crytec.phoenix.api.utils.UtilPlayer;
 import net.crytec.pickmoney.ConfigOptions;
 import net.crytec.pickmoney.PickupMoney;
 import net.crytec.pickmoney.api.DropManager;

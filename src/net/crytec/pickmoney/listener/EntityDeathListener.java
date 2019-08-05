@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-import net.crytec.api.util.UtilMath;
+import net.crytec.phoenix.api.utils.UtilMath;
 import net.crytec.pickmoney.ConfigOptions;
 import net.crytec.pickmoney.api.DropManager;
 import net.crytec.pickmoney.api.EntityDropData;
