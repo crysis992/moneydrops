@@ -16,6 +16,7 @@ import net.crytec.libs.commons.utils.item.ItemBuilder;
 import net.crytec.libs.commons.utils.lang.EnumUtils;
 import net.crytec.pickmoney.ConfigOptions;
 import net.crytec.pickmoney.PickupMoney;
+import net.crytec.pickmoney.utils.ItemPair;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -32,7 +33,7 @@ public class DropManager {
 
   public final NamespacedKey key;
 
-  public final RangeMap<Integer, Material> iconRange = TreeRangeMap.create();
+  public final RangeMap<Integer, ItemPair> iconRange = TreeRangeMap.create();
   public final HashMap<EntityType, EntityDropData> dropData = Maps.newHashMap();
   private final PickupMoney plugin;
 
@@ -43,7 +44,7 @@ public class DropManager {
   private boolean mergeDrops = true;
   private boolean dropNaturally = true;
 
-  private Material defaultMaterial = Material.GOLD_INGOT;
+  private ItemPair defaultIcon;
 
   private final Set<String> worlds;
 
@@ -52,6 +53,7 @@ public class DropManager {
     this.plugin = instance;
     this.load();
     this.worlds = ImmutableSet.copyOf(ConfigOptions.BLACKLISTED_WORLDS.asStringList());
+    this.defaultIcon = new ItemPair(Material.GOLD_INGOT, 0);
   }
 
   public void load() {
@@ -59,10 +61,7 @@ public class DropManager {
     this.mergeDrops = ConfigOptions.MERGE_ITEMS.asBoolean();
     this.dropNaturally = ConfigOptions.DROP_NATURALLY.asBoolean();
     this.showDisplayName = ConfigOptions.SHOW_DISPLAYNAME.asBoolean();
-
-    if (EnumUtils.isValidEnum(Material.class, ConfigOptions.DEFAULT_ICON.asString())) {
-      this.defaultMaterial = Material.valueOf(ConfigOptions.DEFAULT_ICON.asString());
-    }
+    this.defaultIcon = new ItemPair(ConfigOptions.DEFAULT_ICON.asString());
 
     final ConfigurationSection range = plugin.getConfig().getConfigurationSection("icon");
 
@@ -71,9 +70,8 @@ public class DropManager {
 
       final int min = entry.getInt("rangeMin");
       final int max = entry.getInt("rangeMax");
-      final Material mat = Material.valueOf(entry.getString("material"));
 
-      iconRange.put(Range.closed(min, max), mat);
+      iconRange.put(Range.closed(min, max), new ItemPair(entry.getString("material")));
     }
 
     if (ConfigOptions.PLAYER_DROP_ENABLED.asBoolean()) {
@@ -147,9 +145,9 @@ public class DropManager {
     return item;
   }
 
-  public Material getIcon(final double amount) {
-    final Material material = this.iconRange.get((int) amount);
-    return (material != null) ? material : this.defaultMaterial;
+  public ItemStack getIcon(final double amount) {
+    final ItemPair icon = this.iconRange.get((int) amount);
+    return (icon != null) ? icon.getIcon() : this.defaultIcon.getIcon();
   }
 
   public double getDropAmount(final Range<Double> range) {
