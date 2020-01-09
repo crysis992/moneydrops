@@ -9,7 +9,7 @@
   <version>1.2.0</version>
   <packaging>jar</packaging>
 
-  <name>RegionGUI</name>
+  <name>MoneyDrops</name>
 
   <properties>
     <java.version>1.8</java.version>
@@ -44,9 +44,6 @@
           </execution>
         </executions>
         <configuration>
-          <!--  <outputDirectory>${settings.spigot}\plugins</outputDirectory>
-          <finalName>${project.artifactId}</finalName>
-          -->
           <artifactSet>
             <includes>
               <include>co.aikar:*</include>
