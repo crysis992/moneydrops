@@ -1,6 +1,6 @@
 name: MoneyDrops
 main: net.crytec.pickmoney.PickupMoney
-version: 1.2.0
+version: ${project.version}
 authors: [crysis992]
 depend: [Vault]
 api-version: 1.14
