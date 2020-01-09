@@ -1,0 +1,12 @@
+name: MoneyDrops
+main: net.crytec.pickmoney.PickupMoney
+version: 1.2.0
+authors: [crysis992]
+depend: [Vault]
+api-version: 1.14
+
+commands:
+  moneydrop:
+    permission: pickupmoney.admin
+    description: Basic Administration Commands for this Plugin.
+    usage: "Use /moneydrop reload or /moneydrop drop <amount>"
